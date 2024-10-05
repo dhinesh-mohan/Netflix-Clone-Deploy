@@ -1,14 +1,12 @@
 apiVersion: v1
 kind: Service
-metadata:
-  name: netflix-app
-  labels:
-    app: netflix-app
+metadata: 
+  name: netflix
+  namespace: netflix
 spec:
-  type: NodePort
   ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30007
+  - port: 3000
+    protocol: TCP
+  type: ClusterIP
   selector:
-    app: netflix-app
+    role: netflix
