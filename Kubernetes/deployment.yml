@@ -2,10 +2,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: three-tier
+  name: netflix
+  namespace: netflix
   labels:
-    role: frontend
+    role: netflix
     env: demo
 spec: 
   replicas: 1
@@ -16,17 +16,17 @@ spec:
       maxUnavailable: 25%
   selector:
     matchLabels: 
-      role: frontend
+      role: netflix
   template:
     metadata:
       labels:
-        role: frontend
+        role: netflix
     spec: 
       imagePullSecrets:
       - name: ecr-registry-secret
       containers:
-      - name: frontend
-        image: 407622020962.dkr.ecr.us-east-1.amazonaws.com/frontend:3
+      - name: netflix
+        image: 891377007972.dkr.ecr.ap-south-1.amazonaws.com/netflix-demo:3
         imagePullPolicy: Always
         env:
           - name: REACT_APP_BACKEND_URL
